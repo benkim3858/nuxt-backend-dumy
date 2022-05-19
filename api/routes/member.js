@@ -60,5 +60,50 @@ router.post('/phone_check', async function(req, res){
     }
 })
 
+// 이메일 중복 테스트
+router.post('/email_check', async function(req, res){
+    const {email} = req.body;
+    try {
+        const email_dumy = 'test@test.com'
+        if(email === email_dumy) {
+            return res.status(400).end();
+        }
+        return res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).end();
+    }
+})
+
+// 면허번호 중복 테스트
+router.post('/license_check', async function(req, res){
+    const {license} = req.body;
+    try {
+        const license_dumy = '12345'
+        if(license === license_dumy) {
+            return res.status(400).end();
+        }
+        return res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).end();
+    }
+})
+
+// 학색증 번호 중복 테스트
+router.post('/student_check', async function(req, res){
+    const {student} = req.body;
+    try {
+        const student_dumy = '12345'
+        if(student === student_dumy) {
+            return res.status(400).end();
+        }
+        return res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).end();
+    }
+})
+
 
 module.exports = router;
