@@ -4,6 +4,8 @@ const { Op } = require("sequelize");
 
 // 모델 불러오기
 const Member = require('../database/models')['member'];
+// 테스트 AXIOS 경로
+// AXIOS_BASE_URL='http://localhost:4000/api'
 
 // 회원가입 동작 테스트
 router.post('/sign_up', async function(req, res){
@@ -104,6 +106,44 @@ router.post('/student_check', async function(req, res){
         return res.status(400).end();
     }
 })
+
+// 로그인 테스트
+router.post('/member_login', async function(req, res){
+    const {member} = req.body;
+    console.log(member);
+    try {
+        const member_dumy = 'test'
+        if(member === member_dumy) {
+            return res.status(200).json(member)
+        }
+        return res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).end();
+    }
+})
+
+// 클래스 이미지 테스트
+router.get('/get_image', async function(req, res, next){
+    try {
+        return res.status(200).json([1,2,3,4,5,6].map(item => {
+            return {
+                id : item,
+                img : `ex${item}.png`,
+                category : "카테고리 이름",
+                teacher : "강사명",
+                titles : "강의 제목",
+                like : 0,
+            }
+        }));
+    } catch (e) {
+        console.log(e);
+        return res.status(400).end();
+    }
+    
+})
+
+
 
 
 module.exports = router;

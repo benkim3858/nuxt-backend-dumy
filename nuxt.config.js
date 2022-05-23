@@ -40,6 +40,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -69,6 +70,11 @@ export default {
       port: 4000,
       host: '0.0.0.0',
       timing: false,
+  },
+  
+  // '/image/'로 요청이 들어오면 AWS의 CloudFront로 주소로 proxy 하여 요청을 보낸다.
+  proxy: {
+    '/image/': { target: process.env.STATIC_PROXY, pathRewrite: { '^/image/': '/' } },
   },
 
   serverMiddleware: [
